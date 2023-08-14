@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "790348975994",
+    "project_id": "bsafinfoapp",
+    "storage_bucket": "bsafinfoapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790348975994:android:aa52e37e826943870450c3",
+        "android_client_info": {
+          "package_name": "com.example.bsafproductinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790348975994-7im1h3lv44rbk3p2t98363trheb4p8qs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXUV4Ytg7UBOs0SxpU66OBILbUrK5oZRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790348975994-7im1h3lv44rbk3p2t98363trheb4p8qs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
