@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import "package:cloud_firestore/cloud_firestore.dart";
-import "package:bsafproductinfo/models/tyre_model.dart";
+import "package:bsafproductinfo/models/cartyre_model.dart";
 
-//This Class fetches data from firebase and return
+
+//Create a Class named FirebaseAPI that fetches data from firebase collection named Cartyres,it should retrieve the following fields  and returns it to the app product card
+//This Class fetches data from firebase and returns it to the app product card
 class FirebaseAPI {
-  static Future<void> addTyre(TyreModel carTyres)async{
+  static Future<void> addTyre(CarTyreModel carTyres)async{
     await FirebaseFirestore.instance.collection("IndustrialTyres").add({
       'id': carTyres.id,
       'image': carTyres.image,
