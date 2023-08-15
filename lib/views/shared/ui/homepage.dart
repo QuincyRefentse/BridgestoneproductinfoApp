@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bsafproductinfo/views/shared/appstyle.dart';
-import 'package:bsafproductinfo/views/shared/product_card.dart';
+import 'package:bsafproductinfo/views/shared/cartyre_product_card.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_icons/flutter_icons.dart';
 

@@ -6,6 +6,8 @@ industrialTyreModel industrialTyreModelFromJson(String str) => industrialTyreMod
 String industrialTyreModelToJson(industrialTyreModel data) => json.encode(data.toJson());
 
 class industrialTyreModel {
+
+  final String tyre_name;
   final String category;
   final String id;
   final String image;
@@ -27,6 +29,7 @@ class industrialTyreModel {
   final String segment;
 
   industrialTyreModel({
+    required this.tyre_name,
     required this.category,
     required this.id,
     required this.image,
@@ -68,6 +71,7 @@ class industrialTyreModel {
     rft: json["RFT"],
     tdg: json["TDG"],
     segment: json["segment"],
+    tyre_name: json["tyre_name"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -90,5 +94,6 @@ class industrialTyreModel {
     "RFT": rft,
     "TDG": tdg,
     "segment": segment,
+    "tyre_name": tyre_name
   };
 }

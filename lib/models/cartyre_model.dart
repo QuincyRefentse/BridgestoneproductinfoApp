@@ -25,6 +25,7 @@ class CarTyreModel {
   final String rft;
   final String tdg;
   final String segment;
+  final String tyre_name;
 
   CarTyreModel({
     required this.category,
@@ -46,9 +47,11 @@ class CarTyreModel {
     required this.rft,
     required this.tdg,
     required this.segment,
+    required this.tyre_name
   });
 
-  factory CarTyreModel.fromJson(Map<String, dynamic> json) => CarTyreModel(
+  factory CarTyreModel.fromJson(Map<String, dynamic> json) =>
+      CarTyreModel(
     category: json["category"],
     id: json["id"],
     image: json["image"],
@@ -67,6 +70,7 @@ class CarTyreModel {
     xl: json["XL"],
     rft: json["RFT"],
     tdg: json["TDG"],
+    tyre_name: json["tyre_name"],
     segment: json["segment"],
   );
 
@@ -90,5 +94,6 @@ class CarTyreModel {
     "RFT": rft,
     "TDG": tdg,
     "segment": segment,
+    "tyre_name": tyre_name,
   };
 }

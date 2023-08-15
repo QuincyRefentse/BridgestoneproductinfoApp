@@ -6,6 +6,7 @@ Truck_Bus_tyres Truck_Bus_tyresFromJson(String str) => Truck_Bus_tyres.fromJson(
 String Truck_Bus_tyresToJson(Truck_Bus_tyres data) => json.encode(data.toJson());
 
 class Truck_Bus_tyres {
+  final String tyre_name;
   final String category;
   final String id;
   final String image;
@@ -27,6 +28,7 @@ class Truck_Bus_tyres {
   final String segment;
 
   Truck_Bus_tyres({
+    required this.tyre_name,
     required this.category,
     required this.id,
     required this.image,
@@ -68,6 +70,7 @@ class Truck_Bus_tyres {
     rft: json["RFT"],
     tdg: json["TDG"],
     segment: json["segment"],
+    tyre_name: json["tyre_name"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -90,5 +93,6 @@ class Truck_Bus_tyres {
     "RFT": rft,
     "TDG": tdg,
     "segment": segment,
+    "tyre_name": tyre_name,
   };
 }
