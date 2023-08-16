@@ -1,11 +1,11 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-Trucktyres TrucktyresFromJson(String str) => Trucktyres.fromJson(json.decode(str));
+Agrityres AgrityresFromJson(String str) => Agrityres.fromJson(json.decode(str));
 
-String TrucktyresToJson(Trucktyres data) => json.encode(data.toJson());
+String AgrityresToJson(Agrityres data) => json.encode(data.toJson());
 
-class Trucktyres {
+class Agrityres {
   final String tyre_name;
   final String category;
   final String id;
@@ -27,7 +27,7 @@ class Trucktyres {
   final String tdg;
   final String segment;
 
-  Trucktyres({
+  Agrityres({
     required this.tyre_name,
     required this.category,
     required this.id,
@@ -50,7 +50,7 @@ class Trucktyres {
     required this.segment,
   });
 
-  factory Trucktyres.fromJson(Map<String, dynamic> json) => Trucktyres(
+  factory Agrityres.fromJson(Map<String, dynamic> json) => Agrityres(
     tyre_name: json["tyre_name"],
     category: json["category"],
     id: json["id"],

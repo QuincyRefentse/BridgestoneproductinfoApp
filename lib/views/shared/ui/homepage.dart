@@ -1,8 +1,11 @@
 import 'dart:async';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:bsafproductinfo/views/shared/appstyle.dart';
 import 'package:bsafproductinfo/views/shared/cartyre_product_card.dart';
 import 'package:flutter/material.dart';
+
+import '../../../models/cartyre_model.dart';
 //import 'package:flutter_icons/flutter_icons.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +19,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final ScrollController _controller = ScrollController();
   Timer? _scrollTimer;
   late final TabController _tabController =
-      TabController(length: 4, vsync: this);
+  TabController(length: 5, vsync: this);
 
   bool _scrollingRight = true;
 
@@ -35,7 +38,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   void _scrollToRight() {
     double newPosition =
-        _controller.offset + MediaQuery.of(context).size.width * 0.6;
+        _controller.offset + MediaQuery
+            .of(context)
+            .size
+            .width * 0.6;
     if (newPosition > _controller.position.maxScrollExtent) {
       // If the new position exceeds the maximum scroll extent,
       // set the new position to the maximum extent and reverse the scrolling direction
@@ -52,7 +58,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   void _scrollToLeft() {
     double newPosition =
-        _controller.offset - MediaQuery.of(context).size.width * 0.6;
+        _controller.offset - MediaQuery
+            .of(context)
+            .size
+            .width * 0.6;
     if (newPosition < _controller.position.minScrollExtent) {
       // If the new position goes below the minimum scroll extent,
       // set the new position to the minimum extent and reverse the scrolling direction
@@ -93,17 +102,29 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 */
+  Stream<List<CarTyreModel>> read_CarTyre_Product() => FirebaseFirestore.instance
+      .collection("CarTyres")
+      .snapshots()
+      .map((snapshot) =>
+      snapshot.docs.map((doc) => CarTyreModel.fromJson(doc.data())).toList());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xF6E8E8E8),
         body: SizedBox(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height,
           child: Stack(
             children: [
               Container(
                 padding: EdgeInsets.fromLTRB(16, 45, 0, 0),
-                height: MediaQuery.of(context).size.height * 0.4,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * 0.4,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("assets/images/top_imageB.png"),
@@ -111,7 +132,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
                 child: Container(
                   padding: EdgeInsets.only(left: 8, bottom: 15),
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -133,20 +157,23 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           isScrollable: true,
                           labelColor: Colors.white,
                           labelStyle:
-                              appstyle(24, Colors.white, FontWeight.bold),
+                          appstyle(24, Colors.white, FontWeight.bold),
                           unselectedLabelColor: Colors.white.withOpacity(0.5),
                           tabs: const [
                             Tab(
                               text: "Car tyres",
                             ),
                             Tab(
-                              text: " trucks tyres",
+                              text: "Agri Tyres",
                             ),
                             Tab(
                               text: " Truck and Bus tyres",
                             ),
                             Tab(
                               text: " Industrial tyres",
+                            ),
+                            Tab(
+                              text: " Minning Tyres",
                             ),
                           ]),
                     ],
@@ -155,7 +182,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.265),
+                    top: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.265),
                 child: Container(
                   padding: EdgeInsets.only(left: 12),
                   child: TabBarView(controller: _tabController, children: [
@@ -165,7 +195,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         children: [
                           SizedBox(
                             //width: MediaQuery.of(context).size.width * 0.405,
-                            height: MediaQuery.of(context).size.height * 0.405,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height * 0.405,
 
                             child: ListView.builder(
                                 itemCount: 6,
@@ -178,9 +211,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
                                     id: "820570",
                                     image:
-                                        "assets/images/BS_Potenza-S005_3-4_1r.png",
+                                    "assets/images/BS_Potenza-S005_3-4_1r.png",
                                     description:
-                                        'Information about the tyre here',
+                                    'Information about the tyre here',
                                     brand: '',
                                     materialcode: "808500",
                                     LI_SI: '',
@@ -203,10 +236,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             children: [
                               Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(12, 20, 12, 20),
+                                const EdgeInsets.fromLTRB(12, 20, 12, 20),
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Latest Tyres",
@@ -232,7 +265,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ],
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.13,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height * 0.13,
                             child: ListView.builder(
                                 itemCount: 6,
                                 scrollDirection: Axis.horizontal,
@@ -247,7 +283,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         boxShadow: [
                                           BoxShadow(
                                             color:
-                                                Colors.black.withOpacity(0.2),
+                                            Colors.black.withOpacity(0.2),
                                             spreadRadius: 1,
                                             blurRadius: 0.8,
                                             offset: Offset(0, 1),
@@ -257,13 +293,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                           color: Colors.black.withOpacity(0.1),
                                           // Set the border color to black with opacity 0.1
                                           width:
-                                              1, // Set the width of the border
+                                          1, // Set the width of the border
                                         ),
                                       ),
                                       height:
-                                          MediaQuery.of(context).size.height *
-                                              0.12,
-                                      width: MediaQuery.of(context).size.width *
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .height *
+                                          0.12,
+                                      width: MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width *
                                           0.28,
                                       child: Image.asset(
                                           'assets/images/MicrosoftTeams-image (7).png'),
@@ -277,7 +319,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * 0.405,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.405,
                           color: Colors.green,
                         )
                       ],
@@ -285,7 +330,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * 0.405,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.405,
                           color: Colors.orange,
                         )
                       ],
@@ -293,8 +341,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * 0.405,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.405,
                           color: Colors.pink,
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.405,
+                          color: Colors.purple,
                         )
                       ],
                     ),
