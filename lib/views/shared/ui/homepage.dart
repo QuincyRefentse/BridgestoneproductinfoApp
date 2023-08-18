@@ -205,10 +205,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 controller: _controller,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  return ProductCard(
+                                  return CarTyre_ProductCard(
                                     //price: "\R2000",
                                     category: "Potenza",
-
                                     id: "820570",
                                     image:
                                     "assets/images/BS_Potenza-S005_3-4_1r.png",
