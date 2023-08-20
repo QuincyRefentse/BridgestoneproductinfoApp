@@ -1,7 +1,11 @@
 import 'package:bsafproductinfo/views/shared/appstyle.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:bsafproductinfo/firebase_options.dart';
+import 'dart:convert';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:bsafproductinfo/models/cartyre_model.dart';
 
 class CarTyre_ProductCard extends StatefulWidget {
   const CarTyre_ProductCard(
@@ -55,9 +59,53 @@ class CarTyre_ProductCard extends StatefulWidget {
 class _CarTyre_ProductCardState extends State<CarTyre_ProductCard> {
   @override
   Widget build(BuildContext context) {
+    /*
+    StreamBuilder<List<CarTyreModel>>(
+        stream: readUsers(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text("Something went wrong${snapshot.error}");
+          } else if (snapshot.hasData) {
+            final users = snapshot.data!;
+            return Wrap(
+              children: carTyreModel.map(buildUser).toList(),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
+
+    */
     bool selected = true;
     return Padding(
       padding: EdgeInsets.fromLTRB(8, 0, 20, 0),
+
+      /*
+      child: StreamBuilder<List<CarTyreModel>>(
+        stream: readUsers(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text("Something went wrong: ${snapshot.error}");
+          } else if (snapshot.hasData) {
+            final carTyreModels = snapshot.data!;
+            return ListView.builder(
+              itemCount: carTyreModels.length,
+              itemBuilder: (context, index) {
+                final carTyreModel = carTyreModels[index];
+                return buildCarTyreCard(carTyreModel);
+              },
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+
+      */
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(16)),
         child: Container(
@@ -163,4 +211,13 @@ class _CarTyre_ProductCardState extends State<CarTyre_ProductCard> {
       ),
     );
   }
+
+  Stream<List<CarTyreModel>> readUsers() => FirebaseFirestore.instance
+      .collection("CarTyres")
+      .snapshots()
+      .map((snapshot) => snapshot.docs
+          .map((doc) => CarTyreModel.fromJson(doc.data()))
+          .toList());
+
+
 }
