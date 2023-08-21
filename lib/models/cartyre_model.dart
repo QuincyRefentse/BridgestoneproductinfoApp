@@ -54,7 +54,7 @@ class CarTyreModel {
       CarTyreModel(
     category: json["category"],
     id: json["id"],
-    image: json["image"]?? "",
+    image: json["image"],
     description: json["description"],
     brand: json["brand"],
     materialcode: json["materialcode"],

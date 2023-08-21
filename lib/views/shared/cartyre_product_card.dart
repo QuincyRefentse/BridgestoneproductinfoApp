@@ -113,7 +113,7 @@ class _CarTyre_ProductCardState extends State<CarTyre_ProductCard> {
                       height: MediaQuery.of(context).size.height * 0.29,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(carTyreModel.image),
+                          image: NetworkImage(carTyreModel.image),
                           alignment: Alignment.center,
                           //fit: BoxFit.contain,
                         ),

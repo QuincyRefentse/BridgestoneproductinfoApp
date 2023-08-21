@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:bsafproductinfo/views/shared/agrityres_product_card.dart';
+import 'package:bsafproductinfo/views/shared/minningtyres_product_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:bsafproductinfo/views/shared/appstyle.dart';
@@ -7,6 +9,7 @@ import 'package:bsafproductinfo/views/shared/cartyre_product_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/cartyre_model.dart';
+import '../industrialtyres_product_card.dart';
 //import 'package:flutter_icons/flutter_icons.dart';
 
 class HomePage extends StatefulWidget {
@@ -192,8 +195,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     //price: "\R2000",
                                     category: "Potenza",
                                     id: "820570",
-                                    image:
-                                        "assets/images/BS_Potenza-S005_3-4_1r.png",
+                                    image: "image",
                                     description:
                                         'Information about the tyre here',
                                     brand: '',
@@ -539,7 +541,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 controller: _controller,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  return CarTyre_ProductCard(
+                                  return industrialtyres_productcard(
                                     //price: "\R2000",
                                     category: "AL2",
                                     id: "820570",
@@ -653,7 +655,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 controller: _controller,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  return CarTyre_ProductCard(
+                                  return minningtyre_productcard(
                                     //price: "\R2000",
                                     category: "Potenza",
                                     id: "820570",
