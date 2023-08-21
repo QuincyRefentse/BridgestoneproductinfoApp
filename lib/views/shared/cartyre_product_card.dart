@@ -57,28 +57,9 @@ class CarTyre_ProductCard extends StatefulWidget {
 }
 
 class _CarTyre_ProductCardState extends State<CarTyre_ProductCard> {
-  @override
-  Widget build(BuildContext context) {
-    /*
-    StreamBuilder<List<CarTyreModel>>(
-        stream: readUsers(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Text("Something went wrong${snapshot.error}");
-          } else if (snapshot.hasData) {
-            final users = snapshot.data!;
-            return Wrap(
-              children: carTyreModel.map(buildUser).toList(),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        });
-
-    */
+  Widget buildCarTyreCard(CarTyreModel carTyreModel) {
     bool selected = true;
+
     return Padding(
       padding: EdgeInsets.fromLTRB(8, 0, 20, 0),
 
@@ -132,7 +113,7 @@ class _CarTyre_ProductCardState extends State<CarTyre_ProductCard> {
                       height: MediaQuery.of(context).size.height * 0.29,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(widget.image),
+                          image: AssetImage(carTyreModel.image),
                           alignment: Alignment.center,
                           //fit: BoxFit.contain,
                         ),
@@ -212,12 +193,45 @@ class _CarTyre_ProductCardState extends State<CarTyre_ProductCard> {
     );
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(8, 0, 20, 0),
+      child: StreamBuilder<List<CarTyreModel>>(
+        stream: readUsers(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text(
+              "Something went wrong: ${snapshot.error}",
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.white, // You can change the color if desired
+              ),
+            );
+          } else if (snapshot.hasData) {
+            final carTyreModels = snapshot.data!;
+            return ListView.builder(
+              itemCount: carTyreModels.length,
+              itemBuilder: (context, index) {
+                final carTyreModel = carTyreModels[index];
+                return buildCarTyreCard(carTyreModel);
+              },
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+    );
+  }
+
   Stream<List<CarTyreModel>> readUsers() => FirebaseFirestore.instance
       .collection("CarTyres")
       .snapshots()
       .map((snapshot) => snapshot.docs
           .map((doc) => CarTyreModel.fromJson(doc.data()))
           .toList());
-
-
 }
