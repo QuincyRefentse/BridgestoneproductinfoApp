@@ -8,6 +8,59 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bsafproductinfo/models/cartyre_model.dart';
 
 class CarTyre_ProductCard extends StatefulWidget {
+  factory CarTyre_ProductCard.fromJson(Map<String, dynamic> json) =>
+      CarTyre_ProductCard(
+        category: json["category"],
+        id: json["id"],
+        image: json["image"],
+        description: json["description"],
+        brand: json["brand"],
+        materialcode: json["materialcode"],
+        LI_SI: json["LI_SI"],
+        inch: json["inch"],
+        size: json["size"],
+        pattern: json["pattern"],
+        fitmentmakeAndModel: json["fitmentmake&model"],
+        liSs: json["LI_SS"],
+        rimInches: json["rimInches"],
+        repWar: json["REP_WAR"],
+        tyreSize: json["tyreSize"],
+        xl: json["XL"],
+        rft: json["RFT"],
+        tdg: json["TDG"],
+        tyre_name: json["tyre_name"],
+        segment: json["segment"],
+        REP_WAR: '',
+        fitmentmake_and_model: '',
+        LI_SS: json["LI/SS"],
+        RFT: json["RFT"],
+        XL: json["XL"],
+        TDG: json["TDG"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "category": category,
+        "id": id,
+        "image": image,
+        "description": description,
+        "brand": brand,
+        "materialcode": materialcode,
+        "LI_SI": liSs,
+        "inch": inch,
+        "size": size,
+        "pattern": pattern,
+        "fitmentmake&model": fitmentmakeAndModel,
+        "LI_SS": liSs,
+        "rimInches": rimInches,
+        "REP_WAR": repWar,
+        "tyreSize": tyreSize,
+        "XL": xl,
+        "RFT": rft,
+        "TDG": tdg,
+        "segment": segment,
+        "tyre_name": tyre_name,
+      };
+
   const CarTyre_ProductCard(
       {Key? key,
       //required this.price,
@@ -29,9 +82,22 @@ class CarTyre_ProductCard extends StatefulWidget {
       required this.LI_SS,
       required this.RFT,
       required this.XL,
-      required this.TDG})
+      required this.TDG,
+      required this.fitmentmakeAndModel,
+      required this.liSs,
+      required this.repWar,
+      required this.xl,
+      required this.rft,
+      required this.tdg,
+      required this.tyre_name})
       : super(key: key);
 
+  final String tyre_name;
+  final String tdg;
+  final String rft;
+  final String xl;
+  final String repWar;
+  final String liSs;
   final String LI_SI;
   final String pattern;
   final String size;
@@ -45,6 +111,7 @@ class CarTyre_ProductCard extends StatefulWidget {
   final String segment;
   final String rimInches;
   final String tyreSize;
+  final String fitmentmakeAndModel;
   final String REP_WAR;
   final String fitmentmake_and_model;
   final String LI_SS;
@@ -135,7 +202,7 @@ class _CarTyre_ProductCardState extends State<CarTyre_ProductCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.category,
+                      carTyreModel.fitmentmakeAndModel,
                       style: appstyleWithHt(
                           30, Colors.black, FontWeight.bold, 1.1),
                     ),

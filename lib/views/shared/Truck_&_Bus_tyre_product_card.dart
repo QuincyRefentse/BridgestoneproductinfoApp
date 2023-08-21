@@ -3,8 +3,8 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ProductCard extends StatefulWidget {
-  const ProductCard(
+class truck_bus_productcard extends StatefulWidget {
+  const truck_bus_productcard(
       {Key? key,
         //required this.price,
         required this.category,
@@ -49,10 +49,10 @@ class ProductCard extends StatefulWidget {
   final String TDG;
 
   @override
-  State<ProductCard> createState() => _ProductCardState();
+  State<truck_bus_productcard> createState() => _truck_bus_productcardState();
 }
 
-class _ProductCardState extends State<ProductCard> {
+class _truck_bus_productcardState extends State<truck_bus_productcard> {
   @override
   Widget build(BuildContext context) {
     bool selected = true;

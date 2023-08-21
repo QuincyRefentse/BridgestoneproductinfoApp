@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:bsafproductinfo/views/shared/Truck_&_Bus_tyre_product_card.dart';
 import 'package:bsafproductinfo/views/shared/agrityres_product_card.dart';
 import 'package:bsafproductinfo/views/shared/minningtyres_product_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -212,7 +213,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     XL: '',
                                     RFT: '',
                                     TDG: '',
-                                    segment: '',
+                                    segment: '', rft: '', fitmentmakeAndModel: '', liSs: '', repWar: '', xl: '', tdg: '', tyre_name: '',
                                   );
                                 }),
                           ),
@@ -424,7 +425,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 controller: _controller,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  return CarTyre_ProductCard(
+                                  return truck_bus_productcard(
                                     //price: "\R2000",
                                     category: "BS Duravis R Drive",
                                     id: "820570",
